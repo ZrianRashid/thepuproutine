@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Pup Routine — the calm, checkable system for your puppy's first weeks</title>
 <meta name="description" content="A free, printable system for your puppy's first 8 weeks at home: potty schedule, crate plan, sleep rhythm, socialization checklist and vet timeline. No fluff, one routine.">
+<script src="/assets/attr.js"></script>
+<!-- GA4: paste the gtag snippet here once the G-… property exists (see OPS.md, tracking) -->
 <style>
   :root { --ink:#232323; --brand:#6b5b45; --cream:#f4efe6; --paper:#faf8f4; --muted:#6a6a6a; }
   * { box-sizing: border-box; margin: 0; }
@@ -82,7 +84,8 @@
             email: this.email.value,
             'bot-field': this['bot-field'].value,
             src: 'landing',
-            page: location.href
+            page: location.href,
+            attr: window.pupAttr ? window.pupAttr() : null
           })
         });
         var d = await r.json();
