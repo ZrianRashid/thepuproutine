@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Pup Routine — the calm, checkable system for your puppy's first weeks</title>
+<meta name="description" content="A free, printable system for your puppy's first 8 weeks at home: potty schedule, crate plan, sleep rhythm, socialization checklist and vet timeline. No fluff, one routine.">
+<style>
+  :root { --ink:#232323; --brand:#6b5b45; --cream:#f4efe6; --paper:#faf8f4; --muted:#6a6a6a; }
+  * { box-sizing: border-box; margin: 0; }
+  body { font: 17px/1.6 Georgia, "Times New Roman", serif; color: var(--ink); background: var(--paper); }
+  .sans { font-family: "Helvetica Neue", Arial, sans-serif; }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 0 22px; }
+  header { padding: 26px 0 0; text-align: center; }
+  .brand { font: 700 13px "Helvetica Neue", Arial, sans-serif; letter-spacing: 3px; text-transform: uppercase; color: var(--brand); }
+  .hero { text-align: center; padding: 52px 0 8px; }
+  h1 { font-size: clamp(30px, 5.5vw, 44px); line-height: 1.12; letter-spacing: -0.5px; margin-bottom: 18px; }
+  .sub { font-size: 19px; color: #4a4a4a; max-width: 540px; margin: 0 auto 14px; }
+  .rule { width: 64px; border: 0; border-top: 2px solid var(--brand); margin: 26px auto; }
+  .card { background: #fff; border: 1px solid #e7e2d8; border-radius: 10px; padding: 28px; margin: 26px 0; box-shadow: 0 2px 14px rgba(35,35,35,.05); }
+  .card h2 { font: 700 15px "Helvetica Neue", Arial, sans-serif; letter-spacing: 1.5px; text-transform: uppercase; color: var(--brand); margin-bottom: 14px; }
+  ul.sys { list-style: none; }
+  ul.sys li { padding: 9px 0 9px 34px; position: relative; border-bottom: 1px solid #f0ece4; }
+  ul.sys li:last-child { border-bottom: 0; }
+  ul.sys li:before { content: "✓"; position: absolute; left: 4px; top: 9px; color: var(--brand); font-weight: 700; font-family: Arial, sans-serif; }
+  ul.sys b { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 15.5px; }
+  ul.sys span { display: block; font-size: 15px; color: var(--muted); }
+  form { display: flex; flex-direction: column; gap: 12px; }
+  input[type=email] { font: 16px "Helvetica Neue", Arial, sans-serif; padding: 15px 16px; border: 1.5px solid #cfc8ba; border-radius: 8px; background: #fff; width: 100%; }
+  input[type=email]:focus { outline: 2px solid var(--brand); border-color: var(--brand); }
+  button { font: 700 16px "Helvetica Neue", Arial, sans-serif; letter-spacing: .4px; padding: 16px; border: 0; border-radius: 8px; background: var(--ink); color: #fff; cursor: pointer; }
+  button:hover { background: #000; }
+  .fine { font: 13px "Helvetica Neue", Arial, sans-serif; color: #8a8578; text-align: center; }
+  .why { padding: 6px 0 10px; }
+  .why p { margin-bottom: 14px; }
+  footer { text-align: center; padding: 34px 0 44px; font: 12.5px "Helvetica Neue", Arial, sans-serif; color: #9a9382; }
+  .hp { position: absolute; left: -5000px; }
+  @media (max-width: 480px){ .hero { padding-top: 36px; } .card { padding: 22px 18px; } }
+</style>
+</head>
+<body>
+<header><div class="brand">The Pup Routine</div></header>
+
+<section class="hero wrap">
+  <h1>Your puppy's first 8 weeks,<br>as one calm system.</h1>
+  <p class="sub">New-puppy life is chaos only when nobody knows what today is for.
+  This free printable system decides it for you — so you can stop googling at 2am and enjoy the dog.</p>
+</section>
+
+<div class="wrap">
+  <div class="card">
+    <h2>Inside the free system</h2>
+    <ul class="sys">
+      <li><b>The daily routine</b><span>the sleep → potty → play loop that prevents most "behavior problems" before they start</span></li>
+      <li><b>The potty schedule</b><span>three rules and a tracker — accidents become data, not drama</span></li>
+      <li><b>The crate plan</b><span>five steps from "scary box" to self-settling, with the move-on test for each</span></li>
+      <li><b>The sleep rhythm</b><span>why your "bad" puppy is usually an overtired puppy (18–20h/day)</span></li>
+      <li><b>The socialization checklist</b><span>the 14–16-week window, done smart before vaccines finish</span></li>
+      <li><b>The vet &amp; vaccine timeline</b><span>the standard convention, ready to confirm with your own vet</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Get the system — free</h2>
+    <form id="signup" name="pup-routine-signup">
+      <p class="hp"><label>Don't fill this in: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <input type="email" name="email" placeholder="Your email" required autocomplete="email">
+      <button type="submit" id="cta">Send me the First 8 Weeks System</button>
+      <p class="fine" id="formnote">Instant download + the weekly Pup Routine email: one system per week, no fluff.
+      Unsubscribe anytime.</p>
+    </form>
+    <script>
+    document.getElementById('signup').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var btn = document.getElementById('cta'), note = document.getElementById('formnote');
+      btn.disabled = true; btn.textContent = 'One moment…';
+      try {
+        var r = await fetch('https://api.mijnbatterijcheck.nl/pup/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: this.email.value,
+            'bot-field': this['bot-field'].value,
+            src: 'landing',
+            page: location.href
+          })
+        });
+        var d = await r.json();
+        if (d.ok) { location.href = '/thanks.html'; return; }
+        note.textContent = 'That email address does not look right — try again?';
+      } catch (err) {
+        note.textContent = 'Something went wrong — try again in a minute.';
+      }
+      btn.disabled = false; btn.textContent = 'Send me the First 8 Weeks System';
+    });
+    </script>
+  </div>
+
+  <hr class="rule">
+  <section class="why">
+    <p><b>Why a system and not more tips?</b> Because puppies learn from repetition, not from
+    your best intentions. Tips pile up; a routine runs the day for you. Everything in the guide is
+    standard, positive-reinforcement convention — laid out as checkable steps instead of theory.</p>
+    <p><b>Who this is for.</b> New and soon-to-be puppy owners who want structure over chaos:
+    what to do today, what "good progress" looks like this week, and when something is worth a call
+    to the vet or a trainer.</p>
+  </section>
+</div>
+
+<footer class="wrap">© The Pup Routine · thepuproutine.com<br>
+Training conventions, not veterinary advice — health decisions belong with your vet.</footer>
+</body>
+</html>
